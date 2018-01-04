@@ -6,7 +6,9 @@ import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static com.ericorporation.autotesting.constant.WebPath.*;
 
@@ -41,6 +43,20 @@ public class PasswordUpdaterTest {
         actionSignIn.clickSubmitButton();
 
         Thread.sleep(1000);
+        if (webDriver.getCurrentUrl().toString().equals("https://ericorporation.ru/sign-in/?status=failed"))
+        {
+            actionSignIn.fillUserLogin("test@gmail.com");
+            actionSignIn.fillUserPassword("123456");
+
+            Thread.sleep(1000);
+            actionSignIn.clickSubmitButton();
+        }
+        else
+        {
+            System.out.print(webDriver.getCurrentUrl().toString());
+        }
+
+        Thread.sleep(1000);
         actionUpdPass.openProfileMenu();
         actionUpdPass.goToChangePasswordPage();
 
@@ -52,7 +68,19 @@ public class PasswordUpdaterTest {
         Thread.sleep(1000);
         actionUpdPass.clickChangePasswordSubmitButton();
 
-        Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/change-password/");
+        do {
+            if (webDriver.findElement(By.className("bad")).getText().toString().equals("New/old password is not correct or you entered your old password!"))
+            {
+                Thread.sleep(1000);
+                actionUpdPass.fillOldPassword("123456");
+                actionUpdPass.fillNewPassword("test123");
+                actionUpdPass.repeatNewPassword("test123");
+
+                Thread.sleep(1000);
+                actionUpdPass.clickChangePasswordSubmitButton();
+            }
+            else Assert.assertEquals(webDriver.findElement(By.className("good")).getText().toString(),"Your password has successfully updated!");
+        } while (webDriver.findElement(By.className("good")).getText().toString().equals("Your password has successfully updated!"));
 
         Thread.sleep(2000);
         webDriver.close();
