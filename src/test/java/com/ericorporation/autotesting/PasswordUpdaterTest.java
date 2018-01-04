@@ -138,5 +138,75 @@ public class PasswordUpdaterTest {
         Thread.sleep(2000);
         webDriver.close();
     }
+
+    @Test
+    public void testUpdatePassWithEmptyFields() throws InterruptedException {
+
+        webDriver.get(INDEX);
+
+        Thread.sleep(3000);
+        actionSignIn.acceptCookie();
+
+        Thread.sleep(1000);
+        actionSignIn.clickSignIn();
+
+        Thread.sleep(1000);
+        actionSignIn.fillUserLogin("test@gmail.com");
+        actionSignIn.fillUserPassword("test123");
+
+        Thread.sleep(1000);
+        actionSignIn.clickSubmitButton();
+
+        Thread.sleep(1000);
+        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed"))
+        {
+            actionSignIn.fillUserLogin("test@gmail.com");
+            actionSignIn.fillUserPassword("123456");
+
+            Thread.sleep(1000);
+            actionSignIn.clickSubmitButton();
+        }
+        else
+        {
+            System.out.print(webDriver.getCurrentUrl());
+        }
+
+        Thread.sleep(1000);
+        actionUpdPass.openProfileMenu();
+        actionUpdPass.goToChangePasswordPage();
+
+        Thread.sleep(1000);
+        actionUpdPass.fillOldPassword("");
+        actionUpdPass.fillNewPassword("");
+        actionUpdPass.repeatNewPassword("");
+
+        Thread.sleep(1000);
+        actionUpdPass.clickChangePasswordSubmitButton();
+
+        String[] emptyOldPassword = {"","test123"};
+        String[] emptyNewPassword = {"","123456"};
+        String[] emptyRepetedPassword = {"","123456"};
+
+        do {
+            Thread.sleep(1000);
+            for(int i=0; i<2; i++) {
+                actionUpdPass.fillOldPassword(emptyOldPassword[i]);
+                for (int j = 0; j < 2; j++) {
+                    actionUpdPass.fillNewPassword(emptyNewPassword[j]);
+                    for (int l = 1; l >= 0; l--) {
+                        actionUpdPass.repeatNewPassword(emptyRepetedPassword[l]);
+                        break;
+                    }
+                    break;
+                }
+                break;
+            }
+        } while (!webDriver.findElement(By.id("cp-submit")).isEnabled());
+
+        Assert.assertFalse(webDriver.findElement(By.id("cp-submit")).isEnabled());
+
+        Thread.sleep(2000);
+        webDriver.close();
+    }
 }
 
