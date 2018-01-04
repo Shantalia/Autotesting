@@ -41,7 +41,6 @@ public class SignInTest {
         action.clickSubmitButton();
 
         Thread.sleep(1000);
-        do {
             if (webDriver.getCurrentUrl().toString().equals("https://ericorporation.ru/sign-in/?status=failed"))
             {
                 action.fillUserLogin("test@gmail.com");
@@ -54,14 +53,11 @@ public class SignInTest {
             {
                 System.out.print(webDriver.getCurrentUrl().toString());
             }
-        }
-        while (webDriver.getCurrentUrl().equals("https://ericorporation.ru/selection-software-for-heat-exchanger/"));
 
-        //Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
-//
-//
-//        Thread.sleep(2000);
-//        webDriver.close();
+        Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
+
+        Thread.sleep(2000);
+        webDriver.close();
     }
 
     @Test
