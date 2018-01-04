@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import static com.ericorporation.autotesting.constant.WebPath.*;
-import com.ericorporation.autotesting.action.UpdatePass;
 
 public class PasswordUpdaterTest {
     private WebDriver webDriver;
@@ -43,11 +42,20 @@ public class PasswordUpdaterTest {
 
         Thread.sleep(1000);
         actionUpdPass.openProfileMenu();
+        actionUpdPass.goToChangePasswordPage();
 
-        Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
+        Thread.sleep(1000);
+        actionUpdPass.fillOldPassword("test123");
+        actionUpdPass.fillNewPassword("123456");
+        actionUpdPass.repeatNewPassword("123456");
 
-//        Thread.sleep(2000);
-//        webDriver.close();
+        Thread.sleep(1000);
+        actionUpdPass.clickChangePasswordSubmitButton();
+
+        Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/change-password/");
+
+        Thread.sleep(2000);
+        webDriver.close();
     }
 }
 

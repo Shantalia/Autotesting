@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static com.ericorporation.autotesting.constant.WebPath.*;
 
@@ -39,10 +40,28 @@ public class SignInTest {
         Thread.sleep(1000);
         action.clickSubmitButton();
 
-        Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
+        Thread.sleep(1000);
+        do {
+            if (webDriver.getCurrentUrl().toString().equals("https://ericorporation.ru/sign-in/?status=failed"))
+            {
+                action.fillUserLogin("test@gmail.com");
+                action.fillUserPassword("123456");
 
-        Thread.sleep(2000);
-        webDriver.close();
+                Thread.sleep(1000);
+                action.clickSubmitButton();
+            }
+            else
+            {
+                System.out.print(webDriver.getCurrentUrl().toString());
+            }
+        }
+        while (webDriver.getCurrentUrl().equals("https://ericorporation.ru/selection-software-for-heat-exchanger/"));
+
+        //Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
+//
+//
+//        Thread.sleep(2000);
+//        webDriver.close();
     }
 
     @Test
