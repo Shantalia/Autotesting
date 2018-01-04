@@ -1,16 +1,14 @@
 package com.ericorporation.autotesting.action;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.ericorporation.autotesting.action.SignIn;
 
 
-public class UpdatePass extends ActionOnPage {
+public class UpdatePassword extends ActionOnPage {
 
-    public UpdatePass (WebDriver webDriver) { super(webDriver);}
-
-    //public void tryToSignIn
+    public UpdatePassword(WebDriver webDriver) { super(webDriver);}
 
     public void openProfileMenu() { getWebDriver().findElement(By.id("logged")).click(); }
 
@@ -26,5 +24,14 @@ public class UpdatePass extends ActionOnPage {
     {
         WebElement changePasswordSubmitButton = getWebDriver().findElement(By.id("cp-submit"));
         changePasswordSubmitButton.click();
+    }
+
+    public boolean isElementPresent(By by) {
+        try {
+            getWebDriver().findElement(by).isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }
