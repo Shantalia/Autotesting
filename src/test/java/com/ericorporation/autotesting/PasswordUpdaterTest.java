@@ -8,10 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Window;
-import org.openqa.selenium.*;
-
-import javax.xml.bind.Element;
 
 import static com.ericorporation.autotesting.constant.WebPath.*;
 
@@ -138,7 +134,7 @@ public class PasswordUpdaterTest {
 
         String[] emptyOldPassword = {"","test123"};
         String[] emptyNewPassword = {"","123456"};
-        String[] emptyRepetedPassword = {"","123456"};
+        String[] emptyRepeatedPassword = {"","123456"};
 
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
@@ -170,7 +166,7 @@ public class PasswordUpdaterTest {
         Thread.sleep(1000);
         do {
             int n=1;
-            for(int i=0; i<2; i++) {
+            for(int i=1; i>=0; i--) {
                 System.out.println(n);
                 actionUpdPass.CleanFields(By.id("old-pass"));
                 actionUpdPass.fillOldPassword(emptyOldPassword[i]);
@@ -179,19 +175,17 @@ public class PasswordUpdaterTest {
                     actionUpdPass.fillNewPassword(emptyNewPassword[j]);
                     for (int l = 1; l >= 0; l--) {
                         actionUpdPass.CleanFields(By.id("new-pass-2"));
-                        actionUpdPass.repeatNewPassword(emptyRepetedPassword[l]);
-                        System.out.println("|1|"+emptyOldPassword[i]+"|2|"+emptyNewPassword[j]+"|3|"+emptyRepetedPassword[l]);
-                        if (((i==1) && (j==1) && (l==1))) { break;}
-                        if (((i==0) && (j==0) && (l==0))) { break;}
+                        if (((i==1) && (j==1) && (l==1))  || ((i==0) && (j==0) && (l==0))) { continue;}
+                        actionUpdPass.repeatNewPassword(emptyRepeatedPassword[l]);
+                        System.out.println("|1|"+emptyOldPassword[i]+"|2|"+emptyNewPassword[j]+"|3|"+emptyRepeatedPassword[l]);
+                        Assert.assertFalse(webDriver.findElement(By.id("cp-submit")).isEnabled());
                     }
                 }
                   n++;
             }
         } while (webDriver.findElement(By.id("cp-submit")).isEnabled());
 
-        Assert.assertFalse(webDriver.findElement(By.id("cp-submit")).isEnabled());
-
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         webDriver.close();
     }
 }
