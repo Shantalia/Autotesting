@@ -1,24 +1,23 @@
 package com.ericorporation.autotesting;
 
-import com.ericorporation.autotesting.action.SignIn;
+import com.ericorporation.autotesting.action.SignInAction;
 import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static com.ericorporation.autotesting.constant.WebPath.*;
 
-public class SignInTest {
+public class SignInActionTest {
 
     private WebDriver webDriver;
-    private SignIn action;
+    private SignInAction action;
 
     @Before
     public void setFields() {
         webDriver = new ChromeDriverInstaller().getDriver();
-        action = new SignIn(webDriver);
+        action = new SignInAction(webDriver);
     }
 
 
