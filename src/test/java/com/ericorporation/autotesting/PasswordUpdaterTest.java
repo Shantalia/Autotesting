@@ -181,6 +181,8 @@ public class PasswordUpdaterTest {
                         actionUpdPass.CleanFields(By.id("new-pass-2"));
                         actionUpdPass.repeatNewPassword(emptyRepetedPassword[l]);
                         System.out.println("|1|"+emptyOldPassword[i]+"|2|"+emptyNewPassword[j]+"|3|"+emptyRepetedPassword[l]);
+                        if (((i==1) && (j==1) && (l==1))) { break;}
+                        if (((i==0) && (j==0) && (l==0))) { break;}
                     }
                 }
                   n++;
