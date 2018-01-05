@@ -41,18 +41,14 @@ public class SignInTest {
         action.clickSubmitButton();
 
         Thread.sleep(1000);
-            if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed"))
-            {
+            if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed")) {
                 action.fillUserLogin("test@gmail.com");
                 action.fillUserPassword("123456");
 
                 Thread.sleep(1000);
                 action.clickSubmitButton();
             }
-            else
-            {
-                System.out.print(webDriver.getCurrentUrl());
-            }
+            else { System.out.print(webDriver.getCurrentUrl()); }
 
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
 

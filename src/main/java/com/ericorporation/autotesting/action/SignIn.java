@@ -18,13 +18,9 @@ public class SignIn extends ActionOnPage {
 
     public void fillUserLogin(String login) { getWebDriver().findElement(By.id("user_login1")).sendKeys(login); }
 
-    public void fillUserPassword(String password)
-    {
-        getWebDriver().findElement(By.id("user_pass1")).sendKeys(password);
-    }
+    public void fillUserPassword(String password) { getWebDriver().findElement(By.id("user_pass1")).sendKeys(password); }
 
-    public void clickSubmitButton()
-    {
+    public void clickSubmitButton() {
         WebElement submitButton = getWebDriver().findElement(By.id("wp-submit1"));
         submitButton.click();
     }

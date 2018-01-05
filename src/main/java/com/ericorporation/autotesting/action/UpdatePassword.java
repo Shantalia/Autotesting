@@ -20,8 +20,7 @@ public class UpdatePassword extends ActionOnPage {
 
     public void repeatNewPassword(String newPassword) { getWebDriver().findElement(By.id("new-pass-2")).sendKeys(newPassword); }
 
-    public void clickChangePasswordSubmitButton()
-    {
+    public void clickChangePasswordSubmitButton() {
         WebElement changePasswordSubmitButton = getWebDriver().findElement(By.id("cp-submit"));
         changePasswordSubmitButton.click();
     }
@@ -34,4 +33,6 @@ public class UpdatePassword extends ActionOnPage {
             return false;
         }
     }
+
+    public void CleanFields (By by) { getWebDriver().findElement(by).clear(); }
 }

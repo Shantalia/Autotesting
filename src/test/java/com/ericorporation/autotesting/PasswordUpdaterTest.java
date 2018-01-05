@@ -47,18 +47,14 @@ public class PasswordUpdaterTest {
         actionSignIn.clickSubmitButton();
 
         Thread.sleep(1000);
-        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed"))
-        {
+        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed")) {
             actionSignIn.fillUserLogin("test@gmail.com");
             actionSignIn.fillUserPassword("123456");
 
             Thread.sleep(1000);
             actionSignIn.clickSubmitButton();
         }
-        else
-        {
-            System.out.print(webDriver.getCurrentUrl());
-        }
+        else { System.out.print(webDriver.getCurrentUrl()); }
 
         Thread.sleep(1000);
         actionUpdPass.openProfileMenu();
@@ -108,18 +104,14 @@ public class PasswordUpdaterTest {
         actionSignIn.clickSubmitButton();
 
         Thread.sleep(1000);
-        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed"))
-        {
+        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed")) {
             actionSignIn.fillUserLogin("test@gmail.com");
             actionSignIn.fillUserPassword("123456");
 
             Thread.sleep(1000);
             actionSignIn.clickSubmitButton();
         }
-        else
-        {
-            System.out.print(webDriver.getCurrentUrl());
-        }
+        else { System.out.print(webDriver.getCurrentUrl()); }
 
         Thread.sleep(1000);
         actionUpdPass.openProfileMenu();
@@ -144,6 +136,10 @@ public class PasswordUpdaterTest {
 
         webDriver.get(INDEX);
 
+        String[] emptyOldPassword = {"","test123"};
+        String[] emptyNewPassword = {"","123456"};
+        String[] emptyRepetedPassword = {"","123456"};
+
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
 
@@ -158,50 +154,38 @@ public class PasswordUpdaterTest {
         actionSignIn.clickSubmitButton();
 
         Thread.sleep(1000);
-        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed"))
-        {
+        if (webDriver.getCurrentUrl().equals("https://ericorporation.ru/sign-in/?status=failed")) {
             actionSignIn.fillUserLogin("test@gmail.com");
             actionSignIn.fillUserPassword("123456");
 
             Thread.sleep(1000);
             actionSignIn.clickSubmitButton();
         }
-        else
-        {
-            System.out.print(webDriver.getCurrentUrl());
-        }
+        else { System.out.print(webDriver.getCurrentUrl()); }
 
         Thread.sleep(1000);
         actionUpdPass.openProfileMenu();
         actionUpdPass.goToChangePasswordPage();
 
         Thread.sleep(1000);
-        actionUpdPass.fillOldPassword("");
-        actionUpdPass.fillNewPassword("");
-        actionUpdPass.repeatNewPassword("");
-
-        Thread.sleep(1000);
-        actionUpdPass.clickChangePasswordSubmitButton();
-
-        String[] emptyOldPassword = {"","test123"};
-        String[] emptyNewPassword = {"","123456"};
-        String[] emptyRepetedPassword = {"","123456"};
-
         do {
-            Thread.sleep(1000);
+            int n=1;
             for(int i=0; i<2; i++) {
+                System.out.println(n);
+                actionUpdPass.CleanFields(By.id("old-pass"));
                 actionUpdPass.fillOldPassword(emptyOldPassword[i]);
-                for (int j = 0; j < 2; j++) {
+                for (int j = 1; j >=0; j--) {
+                    actionUpdPass.CleanFields(By.id("new-pass-1"));
                     actionUpdPass.fillNewPassword(emptyNewPassword[j]);
                     for (int l = 1; l >= 0; l--) {
+                        actionUpdPass.CleanFields(By.id("new-pass-2"));
                         actionUpdPass.repeatNewPassword(emptyRepetedPassword[l]);
-                        break;
+                        System.out.println("|1|"+emptyOldPassword[i]+"|2|"+emptyNewPassword[j]+"|3|"+emptyRepetedPassword[l]);
                     }
-                    break;
                 }
-                break;
+                  n++;
             }
-        } while (!webDriver.findElement(By.id("cp-submit")).isEnabled());
+        } while (webDriver.findElement(By.id("cp-submit")).isEnabled());
 
         Assert.assertFalse(webDriver.findElement(By.id("cp-submit")).isEnabled());
 
