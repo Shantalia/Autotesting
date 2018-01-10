@@ -6,6 +6,7 @@ import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,8 +18,9 @@ public class PasswordUpdaterTest {
     private PasswordUpdater actionUpdPass;
 
 
+
     @Before
-    public void setFields() {
+    public void openWindow() {
         webDriver = new ChromeDriverInstaller().getDriver();
         actionSignIn = new SignInAction(webDriver);
         actionUpdPass = new PasswordUpdater(webDriver);
@@ -79,7 +81,6 @@ public class PasswordUpdaterTest {
         Assert.assertTrue(webDriver.findElement(By.className("good")).isDisplayed());
 
         Thread.sleep(2000);
-        webDriver.close();
     }
 
     @Test
@@ -126,7 +127,6 @@ public class PasswordUpdaterTest {
         Assert.assertFalse(webDriver.findElement(By.id("cp-submit")).isEnabled());
 
         Thread.sleep(2000);
-        webDriver.close();
     }
 
     @Test
@@ -191,6 +191,10 @@ public class PasswordUpdaterTest {
         } while (webDriver.findElement(By.id("cp-submit")).isEnabled());
 
         Thread.sleep(1000);
+    }
+
+    @After
+    public void closeWebDriver(){
         webDriver.close();
     }
 }

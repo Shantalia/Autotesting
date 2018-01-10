@@ -2,6 +2,7 @@ package com.ericorporation.autotesting;
 
 import com.ericorporation.autotesting.action.SignInAction;
 import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class SignInActionTest {
     private SignInAction action;
 
     @Before
-    public void setFields() {
+    public void openWindow() {
         webDriver = new ChromeDriverInstaller().getDriver();
         action = new SignInAction(webDriver);
     }
@@ -52,7 +53,6 @@ public class SignInActionTest {
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/selection-software-for-heat-exchanger/");
 
         Thread.sleep(2000);
-        webDriver.close();
     }
 
     @Test
@@ -76,7 +76,6 @@ public class SignInActionTest {
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/sign-in/?status=empty");
 
         Thread.sleep(3000);
-        webDriver.close();
     }
 
     @Test
@@ -100,7 +99,6 @@ public class SignInActionTest {
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/sign-in/?status=failed");
 
         Thread.sleep(3000);
-        webDriver.close();
     }
 
     @Test
@@ -124,7 +122,6 @@ public class SignInActionTest {
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/sign-in/?status=empty");
 
         Thread.sleep(3000);
-        webDriver.close();
     }
 
     @Test
@@ -148,6 +145,10 @@ public class SignInActionTest {
         Assert.assertEquals(webDriver.getCurrentUrl(), "https://ericorporation.ru/sign-in/?status=empty");
 
         Thread.sleep(3000);
+    }
+
+    @After
+    public void closeWebDriver(){
         webDriver.close();
     }
 }
