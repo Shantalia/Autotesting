@@ -14,8 +14,8 @@ public class SignInAction extends ActionOnPage {
         getWebDriver().findElement(By.className("tplis-cl-button-accept")).click();
     }
 
-    public void clickSignIn() {
-        clickLinkByText("ВХОД");
+    public void clickSignIn(String signLink) {
+        clickLinkByText(signLink);
     }
 
     public void fillUserLogin(String login) {
