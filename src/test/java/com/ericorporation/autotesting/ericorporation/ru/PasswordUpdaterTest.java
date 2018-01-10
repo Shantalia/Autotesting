@@ -1,16 +1,15 @@
-package com.ericorporation.autotesting;
+package com.ericorporation.autotesting.ericorporation.ru;
 
 import com.ericorporation.autotesting.action.SignInAction;
 import com.ericorporation.autotesting.action.PasswordUpdater;
 import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
+import com.ericorporation.autotesting.constant.WebPath;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static com.ericorporation.autotesting.constant.WebPath.*;
 
 public class PasswordUpdaterTest {
     private WebDriver webDriver;
@@ -29,13 +28,13 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithValidData() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
 
         Thread.sleep(1000);
-        actionSignIn.clickSignIn();
+        actionSignIn.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         actionSignIn.fillUserLogin("test@gmail.com");
@@ -86,13 +85,13 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithEmptyData() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
 
         Thread.sleep(1000);
-        actionSignIn.clickSignIn();
+        actionSignIn.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         actionSignIn.fillUserLogin("test@gmail.com");
@@ -132,7 +131,7 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithEmptyFields() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         String[] emptyOldPassword = {"", "test123"};
         String[] emptyNewPassword = {"", "123456"};
@@ -142,7 +141,7 @@ public class PasswordUpdaterTest {
         actionSignIn.acceptCookie();
 
         Thread.sleep(1000);
-        actionSignIn.clickSignIn();
+        actionSignIn.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         actionSignIn.fillUserLogin("test@gmail.com");

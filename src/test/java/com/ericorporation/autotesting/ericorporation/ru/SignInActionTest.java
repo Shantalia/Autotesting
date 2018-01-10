@@ -1,14 +1,13 @@
-package com.ericorporation.autotesting;
+package com.ericorporation.autotesting.ericorporation.ru;
 
 import com.ericorporation.autotesting.action.SignInAction;
 import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
+import com.ericorporation.autotesting.constant.WebPath;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-
-import static com.ericorporation.autotesting.constant.WebPath.*;
 
 public class SignInActionTest {
 
@@ -25,13 +24,13 @@ public class SignInActionTest {
     @Test
     public void testSignInWithValidData() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         action.acceptCookie();
 
         Thread.sleep(1000);
-        action.clickSignIn();
+        action.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         action.fillUserLogin("test@gmail.com");
@@ -58,13 +57,13 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyData() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         action.acceptCookie();
 
         Thread.sleep(1000);
-        action.clickSignIn();
+        action.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         action.fillUserLogin("");
@@ -81,13 +80,13 @@ public class SignInActionTest {
     @Test
     public void testSignInWithReverseData() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         action.acceptCookie();
 
         Thread.sleep(1000);
-        action.clickSignIn();
+        action.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         action.fillUserLogin("test123");
@@ -104,13 +103,13 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyPassword() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         action.acceptCookie();
 
         Thread.sleep(1000);
-        action.clickSignIn();
+        action.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         action.fillUserLogin("test@gmail.com");
@@ -127,13 +126,13 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyLogin() throws InterruptedException {
 
-        webDriver.get(INDEX);
+        webDriver.get(WebPath.INDEX_RU);
 
         Thread.sleep(3000);
         action.acceptCookie();
 
         Thread.sleep(1000);
-        action.clickSignIn();
+        action.clickSignIn("ВХОД");
 
         Thread.sleep(1000);
         action.fillUserLogin("");
