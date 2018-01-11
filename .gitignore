@@ -8,3 +8,6 @@
 /build/
 /drivers/
 /out/
+*.xml
+/codestyles/
+/_windows/
