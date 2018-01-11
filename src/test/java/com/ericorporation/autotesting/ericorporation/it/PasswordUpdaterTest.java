@@ -160,7 +160,7 @@ public class PasswordUpdaterTest {
             Thread.sleep(1000);
             actionSignIn.clickSubmitButton();
         } else {
-            System.out.print(webDriver.getCurrentUrl());
+            System.out.println(webDriver.getCurrentUrl());
         }
 
         Thread.sleep(1000);

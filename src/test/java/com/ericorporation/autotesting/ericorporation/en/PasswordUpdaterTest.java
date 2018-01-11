@@ -1,4 +1,4 @@
-package com.ericorporation.autotesting.ericorporation.com;
+package com.ericorporation.autotesting.ericorporation.en;
 
 import com.ericorporation.autotesting.action.PasswordUpdater;
 import com.ericorporation.autotesting.action.SignInAction;
