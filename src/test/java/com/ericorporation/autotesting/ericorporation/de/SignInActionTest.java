@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import static com.ericorporation.autotesting.constant.WebPath.INDEX_COM;
 import static com.ericorporation.autotesting.constant.WebPath.INDEX_DE;
 
 public class SignInActionTest {
