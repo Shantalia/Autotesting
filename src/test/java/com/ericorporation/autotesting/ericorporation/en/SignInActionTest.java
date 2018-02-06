@@ -1,4 +1,4 @@
-package com.ericorporation.autotesting.ericorporation.com;
+package com.ericorporation.autotesting.ericorporation.en;
 
 import com.ericorporation.autotesting.action.SignInAction;
 import com.ericorporation.autotesting.browser.ChromeDriverInstaller;
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import static com.ericorporation.autotesting.constant.WebPath.INDEX_COM;
+import static com.ericorporation.autotesting.constant.WebPath.INDEX_EN;
 
 public class SignInActionTest {
 
@@ -25,7 +25,7 @@ public class SignInActionTest {
     @Test
     public void testSignInWithValidData() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         action.acceptCookie();
@@ -58,7 +58,7 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyData() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         action.acceptCookie();
@@ -81,7 +81,7 @@ public class SignInActionTest {
     @Test
     public void testSignInWithReverseData() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         action.acceptCookie();
@@ -104,7 +104,7 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyPassword() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         action.acceptCookie();
@@ -127,7 +127,7 @@ public class SignInActionTest {
     @Test
     public void testSignInWithEmptyLogin() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         action.acceptCookie();

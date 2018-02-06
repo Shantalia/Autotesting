@@ -1,4 +1,4 @@
-package com.ericorporation.autotesting.ericorporation.com;
+package com.ericorporation.autotesting.ericorporation.en;
 
 import com.ericorporation.autotesting.action.PasswordUpdater;
 import com.ericorporation.autotesting.action.SignInAction;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static com.ericorporation.autotesting.constant.WebPath.INDEX_COM;
+import static com.ericorporation.autotesting.constant.WebPath.INDEX_EN;
 
 public class PasswordUpdaterTest {
     private WebDriver webDriver;
@@ -29,7 +29,7 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithValidData() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
@@ -86,7 +86,7 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithEmptyData() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         Thread.sleep(3000);
         actionSignIn.acceptCookie();
@@ -132,7 +132,7 @@ public class PasswordUpdaterTest {
     @Test
     public void testUpdatePassWithEmptyFields() throws InterruptedException {
 
-        webDriver.get(INDEX_COM);
+        webDriver.get(INDEX_EN);
 
         String[] emptyOldPassword = {"", "test123"};
         String[] emptyNewPassword = {"", "123456"};

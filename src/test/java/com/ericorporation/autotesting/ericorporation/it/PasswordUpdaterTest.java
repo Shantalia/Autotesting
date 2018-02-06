@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static com.ericorporation.autotesting.constant.WebPath.INDEX_COM;
 import static com.ericorporation.autotesting.constant.WebPath.INDEX_IT;
 
 public class PasswordUpdaterTest {
@@ -160,7 +159,7 @@ public class PasswordUpdaterTest {
             Thread.sleep(1000);
             actionSignIn.clickSubmitButton();
         } else {
-            System.out.print(webDriver.getCurrentUrl());
+            System.out.println(webDriver.getCurrentUrl());
         }
 
         Thread.sleep(1000);
